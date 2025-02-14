@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>여행지 갤러리</title>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&family=Nanum+Gothic:wght@400;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/ungveloper/web-fonts/GmarketSans/font-face.css" />
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/index.css">
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="visual_section">
+            <div class="bg"></div>
+            <header class="header">
+                <div class="container">
+                    <h1 class="logo">
+                        <a href="#" title="home">TRAVEL</a>
+                    </h1>
+                    <nav>
+                        <ul>
+                            <li><a href="#" title="About">About</a></li>
+                            <li><a href="#" title="About">About</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="progress_bar" id="progress_bar"></div>
+            </header>
+            <div class="text_wrap">
+                <h2>여행지 갤러리</h2>
+                <p>여행을 좋아하진 않지만, 요즘 좀 가고싶네요. <br> 언젠가는 갈 수 있겠죠?</p>
+            </div>
+            <a href="#section_1" class="move_arrow"><span></span></a>
+        </div>
+        <main>
+            <section class="gallery_section" id="section_1">
+                <div class="container">
+                    <h3 class="section_title">갤러리</h3>
+                    <ul class="gallery_list">
+                        <li data-modal="modal_1">
+                            <div class="img">
+                                <img src="../img/croatia_1.jpg" alt="크로아티아">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#블루케이브</span>
+                                    <span>#낭만</span>
+                                    <span>#여유</span>
+                                </div>
+                                <h4>크로아티아</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_2">
+                            <div class="img">
+                                <img src="../img/swiss_1.jpg" alt="스위스">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#자연</span>
+                                    <span>#액티비티</span>
+                                    <span>#패러글라이딩</span>
+                                </div>
+                                <h4>스위스</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_3">
+                            <div class="img">
+                                <img src="../img/austria_1.jpg" alt="오스트리아">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#풍경</span>
+                                    <span>#휴양</span>
+                                    <span>#카페홀릭</span>
+                                </div>
+                                <h4>오스트리아</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_4">
+                            <div class="img">
+                                <img src="../img/por_1.jpg" alt="포르투갈">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#리스본</span>
+                                    <span>#포트 와인</span>
+                                    <span>#빈티지 감성</span>
+                                </div>
+                                <h4>포르투갈</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_5">
+                            <div class="img">
+                                <img src="../img/egypt_1.jpg" alt="이집트">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#유적지</span>
+                                    <span>#휴양/레저</span>
+                                    <span>#위험..</span>
+                                </div>
+                                <h4>이집트</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_6">
+                            <div class="img">
+                                <img src="../img/united_1.jpg" alt="영국">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#랜드마크</span>
+                                    <span>#문화</span>
+                                    <span>#풍경</span>
+                                </div>
+                                <h4>영국</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_7">
+                            <div class="img">
+                                <img src="../img/spain_1.jpg" alt="스페인">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#4계절 색다른</span>
+                                    <span>#마드리드</span>
+                                    <span>#바르셀로나</span>
+                                </div>
+                                <h4>스페인</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_8">
+                            <div class="img">
+                                <img src="../img/canada_1.jpg" alt="캐나다">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#어트랙션</span>
+                                    <span>#토론토</span>
+                                    <span>#나이아가라 폭포</span>
+                                </div>
+                                <h4>캐나다</h4>
+                            </div>
+                        </li>
+                        <li data-modal="modal_9">
+                            <div class="img">
+                                <img src="../img/newyork_1.jpg" alt="뉴욕">
+                            </div>
+                            <div class="info_box">
+                                <div class="tag_list">
+                                    <span>#쇼핑</span>
+                                    <span>#브루클린</span>
+                                    <span>#전망대</span>
+                                </div>
+                                <h4>뉴욕</h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section id="section_2">
+                <div class="container">
+                    <div class="contact_box">
+                        <h3 class="section_title">소통하기</h3>
+                        <p>가보고 좋았던 여행지가 있나요?<br>있으면 추천해주세요!</p>
+                    </div>
+                    <div class="contact_info">
+                        <form action="#" method="post" name="mail" id="contact">
+                            <div class="grid two_column">
+                                <p>
+                                    <label for="name">이름<b>*</b></label>
+                                    <input type="text" name="name" id="name">
+                                </p>
+                                <p>
+                                    <label for="email">이메일<b>*</b></label>
+                                    <input type="email" name="email" id="email">
+                                </p>
+                            </div>
+                            <p>
+                                <label for="etc">비고</label>
+                                <textarea name="etc" id="etc" placeholder="입력하세요." ></textarea>
+                            </p>
+                            <p>
+                                <label for="file">파일</label>
+                                <input type="file" id="file" name="upload" multiple>
+                            </p>
+                            <button type="submit">보내기</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="footer">
+            <div class="container">
+                <p>Copyright © Sooyeon Co.,ltd All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="../js/index.js"></script>
+    <script src="https://kit.fontawesome.com/08e323ee92.js" crossorigin="anonymous"></script>
+</body>
+</html>

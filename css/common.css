@@ -1,0 +1,65 @@
+/* 공통 header */
+.header{
+    position: relative;
+    width: 100%;
+    z-index:100;
+}
+
+.header.fixed{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background-color:#fff;
+    transition:all .3s;
+}
+
+.header.fixed  a {
+    color:#000 !important;
+}
+
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a{
+    font-family: "Bebas Neue", serif;
+    color:white;
+    letter-spacing: 0.8px;
+    font-size: 42px;
+}
+
+nav ul{
+    display:flex;
+    gap:24px;
+}
+
+nav ul li a{
+    color:white;
+}
+
+/* */
+
+.container{
+    max-width:1080px;
+    width:100%;
+    margin:0 auto;
+    padding:15px 0;
+}
+
+h3.section_title{
+    font-size:36px;
+    text-align:left;
+}
+
+textarea{
+    min-height: 160px;
+    resize: vertical;
+}
+
+#footer{
+    border-top:1px solid #ddd;
+    background-color:#f6f6f6;
+}

@@ -141,8 +141,8 @@
 }
 
 .tag_list span{
-   background-color: #368fff;
-   color:white;
+    background-color:#eee;
+    color:#2e2e2e;
    border-radius:4px;
    padding:4px 6px;
    font-size:14px;
@@ -245,9 +245,22 @@
     z-index:100;
 }
 
+.modal_contents .info_box{
+    padding:0;
+}
+
+.modal_contents .info_box .tag_list{
+    margin-top:10px;
+}
+
+.modal_contents .info_box .tag_list span{
+    background-color:#eee;
+    color:#2e2e2e;
+}
+
 .img_box img{
     width: 100%;
-    max-height: 80vh;
+    max-height: 74vh;
     object-fit: contain;
 }
 

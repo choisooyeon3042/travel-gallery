@@ -1,8 +1,4 @@
-// 새로고침 스크롤 위치 복원 안함
-//if (history.scrollRestoration) {
-//  history.scrollRestoration = "manual";
-//}
-
+import { galleryItems } from "/js/modal_contents.js";
 
 // header 스크롤시 header fixed add
 window.addEventListener("scroll", function(event) {
@@ -28,53 +24,49 @@ document.addEventListener("scroll", function(event) {
     });
 });
 
-// 모달
-document.querySelectorAll(".gallery_list > li").forEach(item => {
-    item.addEventListener("click", function(event) {
-        const modalId = item.getAttribute("data-modal");
-        const modal = document.querySelector(`#${modalId}`);
+//갤러리 리스트
+const galleryList = document.querySelector("ul.gallery_list");
 
-        if (modal) {
-            modal.classList.remove("hide");
-            document.body.style.overflow = "hidden";
+if (galleryList) {
+    galleryItems.forEach((item) => {
+        const listItem = document.createElement("li");
+        listItem.setAttribute("data-modal", item.modalId);
 
-            const closeBtn = modal.querySelectorAll(".modal_overlay, .modal_header button");
-             closeBtn.forEach(closeButton => {
-                closeButton.addEventListener("click", function(event) {
-                    modal.classList.add("hide");
-                    document.body.style.overflow = "auto";
-                });
-            });
-        } else {
-            alert("모달 존재 X");
-        }
+        listItem.innerHTML = `
+            <div class="img">
+              <img src="${item.img}" alt="${item.alt}">
+            </div>
+            <div class="info_box">
+              <div class="tag_list">
+                ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
+              </div>
+              <h4>${item.title}</h4>
+            </div>
+        `;
+        galleryList.appendChild(listItem);
     });
-});
+}
 
-const gallery = [
-    {id:1, img: "../img/croatia_1.jpg", alt: "크로아티아 이미지"},
-    {id:2, img: "../img/swiss_1.jpg", alt: "스위스 이미지"},
-    {id:3, img: "../img/austria_1.jpg", alt: "오스트리아 이미지"},
-    {id:4, img: "../img/por_1.jpg", alt: "포르투갈 이미지"},
-    {id:5, img: "../img/egypt_1.jpg", alt: "이집트 이미지"},
-    {id:6, img: "../img/united_1.jpg", alt: "영국 이미지"},
-    {id:7, img: "../img/spain_1.jpg", alt: "스페인 이미지"},
-    {id:8, img: "../img/canada_1.jpg", alt: "캐나다 이미지"},
-    {id:9, img: "../img/newyork_1.jpg", alt: "뉴욕 이미지"},
-];
-
-gallery.forEach((data) => {
+// 갤러리 모달
+galleryItems.forEach((data) => {
+    const tagListHTML = data.tags.map(tag => `<span>${tag}</span>`).join('');
     const modalTemplate = `
-         <div class="modal_wrapper hide" id="modal_${data.id}">
+         <div class="modal_wrapper hide" id="${data.modalId}">
             <div class="modal_overlay"></div>
             <div class="modal_contents">
                 <div class="modal_header">
-                    <button><i class="fa-solid fa-xmark"></i></button>
+                    <button class="close_btn"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="modal_body">
                     <div class="img_box">
                         <img src="${data.img}" alt="${data.alt}">
                     </div>
+                    <div class="info_box">
+                       <h4>${data.title}</h4>
+                       <div class="tag_list">
+                            ${tagListHTML}
+                       </div>
+                   </div>
                 </div>
             </div>
         </div>
@@ -83,4 +75,28 @@ gallery.forEach((data) => {
     document.body.insertAdjacentHTML("beforeend", modalTemplate);
 });
 
+document.querySelector(".gallery_list").addEventListener('click', function(event){
+    const item = event.target.closest("li");
 
+    if (item) {
+        const modalId = item.getAttribute("data-modal");
+        const modal = document.querySelector(`#${modalId}`);
+
+       if (modal) {
+           modal.classList.remove("hide");
+           document.body.style.overflow = "hidden";
+
+           const closBtn = modal.querySelectorAll(".modal_overlay, .close_btn");
+           closBtn.forEach(btn => {
+               btn.addEventListener('click', function() {
+                   modal.classList.add("hide");
+                   document.body.style.overflow = "auto";
+               });
+           });
+           /**/
+
+       } else {
+           alert("모달 존재 X");
+       }
+    }
+});

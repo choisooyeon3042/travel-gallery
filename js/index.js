@@ -144,8 +144,8 @@ document.querySelector(".gallery_list").addEventListener("click", (e) => {
                         modalImg.alt = thumbnail.alt;
                     }
 
-                    const allThumbnails = modal.querySelectorAll(".thumb_item img");
-                    allThumbnails.forEach(img => {
+                    const allThumbnail = modal.querySelectorAll(".thumb_item img");
+                    allThumbnail.forEach(img => {
                         img.classList.remove("active");
                     });
 

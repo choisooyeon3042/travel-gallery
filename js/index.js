@@ -120,7 +120,7 @@ document.querySelector(".gallery_list").addEventListener("click", (e) => {
             const modalImg = modal.querySelector(".modal_body .img_box img");
 
             if (firstThumbnail) {
-                modalImg.src = firstThumbnail.src; // 모달 이미지를 첫 번째 썸네일 이미지로 초기화 한다.
+                modalImg.src = firstThumbnail.src; // 모달 이미지를 첫 번째 썸네일 이미지로 초기화
                 modalImg.alt = firstThumbnail.alt;
                 firstThumbnail.classList.add("active");
             }

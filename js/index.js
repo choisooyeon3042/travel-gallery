@@ -135,6 +135,7 @@ document.querySelector(".gallery_list").addEventListener("click", (e) => {
 
             // 썸네일 리스트 클릭 시 이미지 교체
             const thumbnailList = modal.querySelector(".thumbnail_list");
+
             thumbnailList.addEventListener("click", (e) => {
                 const thumbnail = e.target.closest(".thumb_item img");
                 if (thumbnail) {

@@ -28,7 +28,6 @@ const galleryList = document.querySelector("ul.gallery_list");
 
 if (galleryList) {
     galleryItems.forEach((item) => {
-        if (!item.img || !item.title) return;
         const listItem = document.createElement("li");
         listItem.setAttribute("data-modal", item.modalId);
 
@@ -49,7 +48,6 @@ if (galleryList) {
 
 // 갤러리 모달
 galleryItems.forEach((data) => {
-    if (!data.modalId || !data.img || !data.title) return;
     const tagListHTML = data.tags.map(tag => `<span>${tag}</span>`).join('');
 
     const modalTemplate = `

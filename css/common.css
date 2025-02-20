@@ -63,3 +63,47 @@ textarea{
     border-top:1px solid #ddd;
     background-color:#f6f6f6;
 }
+
+@media all and (min-width: 321px) and (max-width: 768px) {
+    .header .container{
+        justify-content: center;
+    }
+
+    .logo a{
+        font-size:28px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    h3.section_title {
+        font-size: 26px;
+    }
+
+    footer p{
+        font-size:14px;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .header .container{
+        justify-content: center;
+    }
+
+    .logo a{
+        font-size:28px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    h3.section_title {
+        font-size: 26px;
+    }
+
+    footer p{
+        font-size:14px;
+    }
+}

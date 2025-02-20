@@ -1,7 +1,7 @@
-import { galleryItems } from "/js/modal_contents.js";
+import { galleryItems, modalThumbnails } from "/js/modal_contents.js";
 
 // header 스크롤시 header fixed add
-window.addEventListener("scroll", function(event) {
+window.addEventListener("scroll", () => {
     let header = document.querySelector("header");
     let scrollY = window.scrollY;
 
@@ -13,22 +13,22 @@ window.addEventListener("scroll", function(event) {
 });
 
 // 스크롤시 progressbar
-document.addEventListener("scroll", function(event) {
+window.addEventListener("scroll", () => {
     const progressBar = document.getElementById("progress_bar");
 
-    window.addEventListener("scroll", function(event) {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const bar = (window.scrollY / scrollHeight) * 100;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const bar = (window.scrollY / scrollHeight) * 100;
 
-      progressBar.style.width = bar + "%";
-    });
+    progressBar.style.width = bar + "%";
 });
+
 
 //갤러리 리스트
 const galleryList = document.querySelector("ul.gallery_list");
 
 if (galleryList) {
     galleryItems.forEach((item) => {
+        if (!item.img || !item.title) return;
         const listItem = document.createElement("li");
         listItem.setAttribute("data-modal", item.modalId);
 
@@ -49,54 +49,113 @@ if (galleryList) {
 
 // 갤러리 모달
 galleryItems.forEach((data) => {
+    if (!data.modalId || !data.img || !data.title) return;
     const tagListHTML = data.tags.map(tag => `<span>${tag}</span>`).join('');
+
     const modalTemplate = `
          <div class="modal_wrapper hide" id="${data.modalId}">
             <div class="modal_overlay"></div>
-            <div class="modal_contents">
-                <div class="modal_header">
-                    <button class="close_btn"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div class="modal_body">
-                    <div class="img_box">
-                        <img src="${data.img}" alt="${data.alt}">
+            <div class="modal_contents gallery_modal_contents">
+                <div class="detail_inner">
+                    <div class="modal_header">
+                        <button class="close_btn"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="info_box">
-                       <h4>${data.title}</h4>
-                       <div class="tag_list">
-                            ${tagListHTML}
-                       </div>
-                   </div>
+                    <div class="modal_body gallery_modal_body">
+                        <div class="left_contents">
+                            <div class="img_box">
+                                <img src="${data.img}" alt="${data.alt}">
+                            </div>
+                        </div>
+                        <div class="info_box">
+                           <h4>${data.title}</h4>
+                           <div class="tag_list">
+                                ${tagListHTML}
+                           </div>
+                        </div>
+                    </div>
                 </div>
+                <ul class="thumbnail_list"></ul>
             </div>
         </div>
     `;
-    // HTML 마크업 파싱, 요소 노드의 자식 노드로 DOM 추가
+
     document.body.insertAdjacentHTML("beforeend", modalTemplate);
+    generateThumbnailList(data.modalId);
 });
 
-document.querySelector(".gallery_list").addEventListener('click', function(event){
-    const item = event.target.closest("li");
+// 썸네일 목록을 동적으로 생성
+function generateThumbnailList(modalId) {
+    const thumbnailContainer = document.querySelector(`#${modalId} .thumbnail_list`);
+    const thumbnails = modalThumbnails[modalId];
+
+    if (thumbnails) {
+        thumbnailContainer.innerHTML = thumbnails.map(item => `
+            <li class="thumb_item">
+                <img src="${item.thumbImg}" alt="${item.thumbAlt}" data-modal="${modalId}">
+            </li>
+        `).join('');
+    }
+}
+
+document.querySelector(".gallery_list").addEventListener("click", (e) => {
+    const item = e.target.closest("li");
 
     if (item) {
         const modalId = item.getAttribute("data-modal");
         const modal = document.querySelector(`#${modalId}`);
 
-       if (modal) {
-           modal.classList.remove("hide");
-           document.body.style.overflow = "hidden";
+        if (modal) {
+            // 모든 모달을 숨기고 첫 번째 썸네일에 active 클래스 추가
+            const allModal = document.querySelectorAll(".modal_wrapper");
+            allModal.forEach(modal => {
+                modal.classList.add("hide");
+                const allThumbnail = modal.querySelectorAll(".thumb_item img");
+                allThumbnail.forEach(img => {
+                    img.classList.remove("active");
+                });
+            });
 
-           const closBtn = modal.querySelectorAll(".modal_overlay, .close_btn");
-           closBtn.forEach(btn => {
-               btn.addEventListener('click', function() {
-                   modal.classList.add("hide");
-                   document.body.style.overflow = "auto";
-               });
-           });
-           /**/
+            modal.classList.remove("hide");
+            document.body.style.overflow = "hidden";
 
-       } else {
-           alert("모달 존재 X");
-       }
+            const firstThumbnail = modal.querySelector(".thumbnail_list .thumb_item img:first-child");
+            const modalImg = modal.querySelector(".modal_body .img_box img");
+
+            if (firstThumbnail) {
+                modalImg.src = firstThumbnail.src; // 모달 이미지를 첫 번째 썸네일 이미지로 초기화 한다.
+                modalImg.alt = firstThumbnail.alt;
+                firstThumbnail.classList.add("active");
+            }
+
+            const closeBtn = modal.querySelectorAll(".modal_overlay, .close_btn");
+            closeBtn.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    modal.classList.add("hide");
+                    document.body.style.overflow = "auto";
+                });
+            });
+
+            // 썸네일 리스트 클릭 시 이미지 교체
+            const thumbnailList = modal.querySelector(".thumbnail_list");
+            thumbnailList.addEventListener("click", (e) => {
+                const thumbnail = e.target.closest(".thumb_item img");
+                if (thumbnail) {
+                    const modalImg = modal.querySelector(".modal_body .img_box img");
+                    if (modalImg) {
+                        modalImg.src = thumbnail.src;
+                        modalImg.alt = thumbnail.alt;
+                    }
+
+                    const allThumbnails = modal.querySelectorAll(".thumb_item img");
+                    allThumbnails.forEach(img => {
+                        img.classList.remove("active");
+                    });
+
+                    thumbnail.classList.add("active");
+                }
+            });
+        } else {
+            alert("모달 존재 X");
+        }
     }
 });

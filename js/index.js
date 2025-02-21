@@ -1,4 +1,4 @@
-import { galleryItems, modalThumbnails } from "/js/modal_contents.js";
+import { galleryItems, modalThumbnails } from "./modal_contents.js";
 
 // header 스크롤시 header fixed add
 window.addEventListener("scroll", () => {

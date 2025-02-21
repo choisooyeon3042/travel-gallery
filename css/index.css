@@ -409,6 +409,7 @@
         flex-direction: column;
         height: 100%;
         border-radius:0;
+        justify-content: space-between;
     }
 
     .img_box img{
@@ -508,6 +509,7 @@
         flex-direction: column;
         height: 100%;
         border-radius:0;
+        justify-content: space-between;
     }
 
     .img_box img{

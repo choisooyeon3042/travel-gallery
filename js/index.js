@@ -56,7 +56,7 @@ galleryItems.forEach((data) => {
             <div class="modal_contents gallery_modal_contents">
                 <div class="detail_inner">
                     <div class="modal_header">
-                        <button class="close_btn"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="close_btn"><img src="/img/close.png" alt="모달 닫기 버튼"></button>
                     </div>
                     <div class="modal_body gallery_modal_body">
                         <div class="left_contents">
